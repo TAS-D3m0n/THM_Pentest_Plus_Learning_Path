@@ -1,0 +1,219 @@
+[BURP SUITE]
+
+******************************************************************************
+
+Task 1: Introduction Outline
+
+[*] This room will cover the foundations of using the Burp Suite web application framework 
+
+[Question 1]: Deploy the machine attached to the task by pressing the green "Start Machine" button, as well as the AttackBox (using the "Start AttackBox" button at the top of the page) if you are not using your own machine.
+
+[!] No answer needed 
+
+******************************************************************************
+
+Task 2: Getting Started - What is Burp Suite?
+
+[*] Read this task and complete the question 
+
+[Question 1]: Which edition of Burp Suite will be using in this module?
+
+[!] Answer: Burp Suite Community
+
+[Question 2]: Which edition of Burp Suite runs on a server and provides constant scanning for target web apps?
+
+[!] Answer: Burp Suite Enterprise 
+
+[Question 3]: Burp Suite is frequently used when attacking web applications and ___ applications 
+
+[!] Answer: Mobile 
+
+******************************************************************************
+
+Task 3: Getting Started - Features of Burp Community 
+
+[*] Read this task and complete the question  
+
+[Question 1]: Which Burp Suite feature allows us to intercept requests between ourselves and the target?
+	
+[!] Answer: Proxy 
+
+[Question 2]: Which Burp tool would we use if we wanted to bruteforce a login form?
+	
+[!] Answer: Intruder 
+
+******************************************************************************
+
+Task 4: Getting Started - Installation 
+
+[*] If you have chosen not to use the AttackBox, make sure that you have a copy of Burp Suite installed before proceeding.
+
+[!] No answer needed 
+
+******************************************************************************
+Task 5: Getting Started - The Dashboard 
+
+[*] Read this task and complete the question 
+
+[!] Answer: No answer needed 
+
+******************************************************************************
+
+Task 6: Getting Started - Navigation 
+
+[*] Get comfortable navigating around the top menu bars. 
+
+[!] Answer: No answer needed 
+
+******************************************************************************
+
+Task 7: Getting Started - Options 
+
+[*] Read this task, remember options and complete the question
+
+[Question 1]: Change the Burp Suite theme to dark mode 
+
+[!] Answer: No answer needed 
+
+[Question 2]: In which Project options sub-tab can you find reference to  “Cookie jar”?
+
+[!] Answer: Sessions 
+
+[Question 3]: In which User options sub-tab can you change the Burp Suite update behaviour? 
+
+[!] Answer: Misc 
+
+[Question 4]: What is the name of the section within the User options “Misc” sub-tab which allows you to change the Burp Suite keybindings?
+
+[!] Answer: Hotkeys 
+
+[Question 5]: If we have uploaded Client-Side TLS certificates in the User options tab, can we override these on a per-project basis (Aye/Nay)?
+
+[!] Answer: Aye 
+
+[Question 6]: No answer needed 
+
+[*] Burp Suite also has a lot of options that you can execute, take the time to read it.
+
+******************************************************************************
+
+Task 8: Proxy - Introduction to the Burp Proxy 
+
+[*] The Burp Proxy is the most fundamental (and most important) of the tools available in Burp Suite. 
+
+[*] There are a few configurations we need to make before we can use the proxy
+
+[Question 1]: Which button would we choose to send an intercepted request to the target in Buro Proxy?
+
+[!] Answer: Forward 
+
+[*] There is 1 request sent to the website, then the browser making the request will hang or become unresponsive in the proxy tab. You can then choose to FORWARD or cancel the request.
+
+[Question 2]: Research - What is the default keybind for this? 
+
+[*]Read this hind:
+
+	[+] Use what you learnt in a previous task to look up the keybindings used in Burp Suite, then find a keybinding related to forwarding intercepted proxy messages.
+
+[!] Answer: Ctrl + F 
+
+******************************************************************************
+
+Task 9: Proxy - Connecting through the Proxy (FoxyProxy) 
+
+[Question 1]: Read through the options in the right-click menu. 
+
+[*] There is one particularly useful option that allows you to intercept and modify the response to your request.
+
+[!] Answer: Response to this request 
+
+[Question 2]: Try installing FoxyProxy standard and have a look at the pattern matching features.
+
+[!] Answer: No answer needed 
+
+******************************************************************************
+
+Task 10: Proxy - Proxying HTTPS 
+
+[*] In this task, Firefox is telling that the Portswigger Certificate Authority isn’t authorised to secure the connection. 
+
+    [+] We go to (about:preferences) into Firefox and search keyword is “Certificate”. 
+
+    [+] Clicking the “View Certificate” button to see all of our trusted CA certificates.
+
+    [+] Choose import .der and “Trust this CS to identify websites.”
+
+[!] Answer: No answer needed
+
+******************************************************************************
+
+Task 11: Proxy - The Burp Suite Browser 
+
+[!] Answer: No answer needed 
+
+[*] Burp Suite also includes a built-in Chromium browser that is pre-configured to use the proxy without any of the modifications we just had to do.
+
+    [+] Turn on Burp Suite and click “Open Browser”.
+
+******************************************************************************
+
+Task 12: Proxy - Scoping and Targeting 
+	
+[!] Answer: No answer needed 
+
+[*] Turn on Burp Suite and click into the “Target” button
+
+[*] Add http://machine_IP/ 
+
+[*] Add to scope 
+
+[!] Answer: Change the Proxy settings to only intercept traffic to in-scope targets. 
+
+******************************************************************************
+
+Task 13: Proxy - Site Map and Issue Definitions 
+
+[*] We go to “Site map” in Burp Suite 
+
+[*] Take care of hiding CSS or JavaScript in this task 
+
+[*] Next Step, we can see “Response” and inspect in that, we can see the flag is THM{NmNlZTliNGE1MWU1ZTQzMzgzNmFiNWVk}
+
+[Question 1]: What is the flag? 
+
+[!] Answer: THM{NmNlZTliNGE1MWU1ZTQzMzgzNmFiNWVk}
+
+[Question 2]: Look through the Issue Definitions list. 
+What is the typical severity of a Vulnerable JavaScript dependency? 
+	
+[!] Answer: Low 
+
+******************************************************************************
+
+Task 14: Practical - Example Attack 
+
+[*] Connect to http://Machine_IP/ticket/
+
+[*] XSS - it can be thought of as injecting a client-side script (usually in JavaScript) into a webpage in such a way that it executes. 
+
+    [+] When we connect to http://Machine_IP/ticket/ , we can see the form with Contact email textbox and textbox for “Type your query here:”
+
+[*] Than example, we try type “<script>alert("Succ3ssful XSS")</script>” and you should find that here is a client-side filter in place which prevents you from adding any special characters that aren’t allowed in email addresses. 
+
+[*] We will start complete this missions
+
+[*] First, we must make sure Burp Proxy is active and that the “intercept is on” . 
+
+[*] Submit the form - the request should be intercepted by the Proxy 
+
+[*] After pasting in the payload, we need to select it, then URL encode it with the Ctr+U to make it safe to send.
+
+[!] Answer: No answer needed 
+
+[*] We get an alert box from the site indicating a successful XSS attack 
+
+******************************************************************************
+
+Task 15: Conclusion - Room Conclusion 
+
+[!] Answer: No answer needed
