@@ -1,0 +1,258 @@
+Task 1: Open for business!
+
+    [+] Deploy the VM attached to this task to get started.
+
+    [+] We will apply what we learned in the top 10 owasp.
+
+******************************************************************************************************************************************************************************************************************************************
+
+Task 2: Let's go on an adventure! 
+
+    [+] In this room, we will use BurpSuite to hack.
+
+    [*] In burp, set the Intercept mode to off and then browser around the site. This allows Burp to log different request from the server that may be helpful later.
+
+[Question 1]: What is the Adminitrator's email address?
+
+    [+] This website, the reviews show each user's email address. 
+
+    [+] We will see admin's email address by click on product.
+
+    [+] Click on the Apple Juice product, shows us the Admin email. 
+
+    [!] Answer: admin@juice-sh.op
+
+[Question 2]: What parameter is used for searching?
+
+    [+] Click on the magnifying glass in the top right of the application will pop out a search bar.
+
+    [+] We can then input some text and by pressing Enter will search for the text which was just inputted.
+
+    [+] Now pay attention to the URL which will now update with the text we just entered.
+
+    [+] We can now see the search parameter after the /#/search? the letter q
+
+    [!] Answer: q
+
+[Question 3]:What show does Jim reference in his review? 
+
+    [+] Jim did a review on the Green Smoothie product. We can see that he mentions a replicator 
+
+    [+] We will search on google "replicator".
+
+    [+] we will get the results indicating that it is from a TV show called Star Trek
+
+    [!] Answer: Star Trek
+
+******************************************************************************************************************************************************************************************************************************************
+
+Task 3: Inject the juice
+
+[*] This task, we will by used injection. We can do with 3 types of injection.
+
+    [1] SQL Injection 
+    [2] Command Injection
+    [3] Email Injection
+
+[Question 1]: Log into the Adminitrator account!
+
+    [+] Start the Burp Suite
+
+    [+] We will turn on Intercept
+
+    [+] Input some data into the email and password fields.
+
+    [+] We can see email and password in the row of BurpSuite. Now we forward it to see it.
+
+    [+] We will now change the email next to the email to: ' or 1=1-- and forward it to the server.
+
+    [+] We can see the flag
+
+    [!] Answer: 32a5e0f21372bcc1000a6088b93b458e41f0e02a
+
+[*] The characters ' will close the brackets in the SQL query 
+
+[*] 'OR' in a SQL statement will return true if either side of it is true. As 1=1 is always true, the whole statement is true. Thus it will tell the server that the email is valid, and log us into user id 0, which happens to be the administrator account.
+
+[*] The -- character is used in SQL to comment out data, any restrictions on the login will no longer work as they are interpreted as a comment. This is like the # and // comment in python and javascript respectively.
+
+[Question 2]:Log into the Bender account!
+
+    [+] Same question 1, but this question tell us log into the Bender account
+
+    [+] Bender's email address: bender@juice-sh.op
+
+    [+] Input email address and some password. Open BurpSuite and forward that for server
+
+    [!] Answer: fb364762a3c102b2db932069c0e6b78e738d4066
+
+[*] As the email address is valid (which will return true), we do not need to force it to be true. Thus we are able to use '-- to bypass the login system. Note the 1=1 can be used when the email or username is not known or invalid.
+
+******************************************************************************************************************************************************************************************************************************************
+
+Task 4: Who broke my lock?! 
+
+[*] In this task, we will look at exploiting authentication through different flaws
+
+    [+] Weaks Password in high privileged accounts
+
+    [+] Forgotten password pages 
+
+    [+] Broken authentication
+
+[Question 1]: Bruteforce the Administrator account's password!
+
+    [+] This server have the wordlist and we can add it into the BurpSuite.
+
+    [+] This time we will forward request to Intruder and add payload to start Bruteforce attack.
+
+    [!] Answer: c2110d06dc6f81c67cd8099ff0ba601241f1ac0e
+
+[Question 2]: Reset Jim's password!
+
+    [+] As in the previous part, we already know Jim is related to Star Trek. Let's try to find some related information on google.
+
+    [+] This question have Jim's Security Question and it's "Your eldest siblings middle name?"
+
+    [+] On google we can see name of Jim's Family. We can see "Samuel"
+
+    [!] Answer: 094fbc9b48e525150ba97d05b942bbf114987257
+
+******************************************************************************************************************************************************************************************************************************************
+
+Task 5: AH!Don't Look!  
+
+    [+] Sensitive Data Exposure
+
+[Question 1]:  Access the Confidential Document!
+
+    [+] Navigate to the About Us page, and hover over the "Check out our terms of use".
+
+    [+] You will see that it links to  http://10.10.104.242/ftp/legal.md. Navigating to that /ftp/ directory reveals that it is exposed to the public!
+
+    [+] We will download the acquisitions.md and save it
+
+    [+] After downloading it, navigate to the gttp://10.10.104.242/ to receive the flag!
+
+    [!] Answer: edf9281222395a1c5fee9b89e32175f1ccf50c5b
+
+[Question 2]: Log into MC SafeSearch's account!
+
+    [+] After watching the video there are certain parts of the song that stand out.
+
+    [+] He notes that his password is "Mr. Noodles" but he has replaced some "vowels into zeros", meaning that he just replaced the o's into 0's.
+
+    [+] We now know the password to the mc.safesearch@juice-sh.op account is "Mr. N00dles"
+
+    [!] Answer: 66bdcffad9e698fd534003fbb3cc7e2b7b55d7f0
+
+[Question 3]: Download the Backup file!
+
+    [+] We will now go back to the  http://10.10.104.242/ftp/ folder and try to download package.json.bak. But it seems we are met with a 403 which says that only .md and .pdf files can be downloaded. 
+
+    [+] Negative to http://10.10.104.242/ftp/package.json.bak%2500.md
+
+[*] A Poison Null Byte is actually a NULL terminator. By placing a NULL character in the string at a certain byte, the string will tell the server to terminate at that point, nulling the rest of the string. 
+
+    [!] Answer: bfc1e6b4a16579e85e06fee4c36ff8c02fb13795
+
+******************************************************************************************************************************************************************************************************************************************
+
+Task 6: Who's flying this thing? 
+
+[!] Modern-day systems will allow for multiple users to have access to different pages. Administrators most commonly use an administration page to edit, add and remove different elements of a website. You might use these when you are building a website with programs such as Weebly or Wix.  
+
+    [+] When Broken Access Control exploits or bugs are found, it will be categorised into one of two types:
+
+        [1] Horizontal Privilege Escalation
+
+        [2] Vertical Privilege Escalation
+
+    [+] Broken Access Control
+[Question 1]: Access the administration page!
+
+    [+] First, we are going to open the Debugger on Firefox. 
+
+    [+] We are then going to refresh the page and look for a javascript file for main-es2015.js
+
+    [+] We will then go to that page at: http://10.10.104.242/main-es2015.js
+
+    [+] Search "path:admin"
+
+    [+] This hints towards a page called "/#/administration"
+
+    [!] Answer: 946a799363226a24822008503f5d1324536629a0 
+
+[Question 2]: View another user's shopping basket!
+
+    [+] Login to the Admin account and click on 'Your Basket'. Make sure Burp is running so you can capture the request!
+
+    [+] In BurpSuite, Forward each request until you see: GET /rest/basket/1 HTTP/1.1
+
+    [+] Now, we are going to change the number 1 after /basket/ to 2
+
+    [+] Back Home Page to capture flag 
+
+    [!] Answer: 41b997a36cc33fbe4f0ba018474e19ae5ce52121
+
+[Question 3]:  Remove all 5-star reviews!
+
+    [+] Navigate to the  http://10.10.104.242/#/administration page again and click the bin icon next to the review with 5 stars!
+
+    [!] Answer: 50c97bcce0b895e446d61c83a21df371ac2266ef 
+
+******************************************************************************************************************************************************************************************************************************************
+
+Task 7: Where did that come from? 
+
+[*] XSS or Cross-site scripting is a vulnerability that allows attackers to run javascript in web applications.
+
+[*] There are three major types of XSS attacks:
+
+    [+] DOM (Special)
+    [+] Persistent (Server-side)
+    [+] Reflected (Client-side)
+
+[Question 1]: Perform a DOM XSS!
+
+    [+] <iframe src="javascript:alert(`xss`)"> 
+
+    [+] Inputting this into the search bar will trigger the alert.
+
+    [!] Answer: 9aaf4bbea5c30d00a1f5bbcfce4db6d4b0efe0bf
+
+[*] It is common practice that the search bar will send a request to the server in which it will then send back the related information, but this is where the flaw lies. Without correct input sanitation, we are able to perform an XSS attack against the search bar. 
+
+[Question 2]: Perform a persistent XSS!
+
+    [+] We are going to navigate to the "Last Login IP" page for this attack.
+
+    [+] We will then head over to the Headers tab where we will add a new header:
+
+    [+] <iframe src="javascript:alert(`xss`)">
+
+[*] The True-Client-IP  header is similar to the X-Forwarded-For header, both tell the server or proxy what the IP of the client is. Due to there being no sanitation in the header we are able to perform an XSS attack. 
+
+    [!] Answer: 149aa8ce13d7a4a8a931472308e269c94dc5f156
+
+[Question 3]: Perform a reflected XSS!
+
+    [+] Login into the admin account and navigate to the 'Order History' page. 
+
+    [+] From there you will see a "Truck" icon, clicking on that will bring you to the track result page. You will also see that there is an id paired with the order.   
+
+    [+] We will use the iframe XSS, <iframe src="javascript:alert(`xss`)">, in the place of the 5267-f73dcd000abcc353
+
+[*] The server will have a lookup table or database (depending on the type of server) for each tracking ID. As the 'id' parameter is not sanitised before it is sent to the server, we are able to perform an XSS attack.  
+
+    [!] Answer: 23cefee1527bde039295b2616eeb29e1edc660a0
+
+******************************************************************************************************************************************************************************************************************************************
+
+Task 8: Exploration! 
+
+[*] If you wish to tackle some of the harder challenges that were not covered within this room, check out the /#/score-board/ section on Juice-shop. Here you can see your completed tasks as well as other tasks in varying difficulty.
+
+[Question]: Access the /#/score-board/ page
+
+    [!] Answer: 7efd3174f9dd5baa03a7882027f2824d2f72d86e

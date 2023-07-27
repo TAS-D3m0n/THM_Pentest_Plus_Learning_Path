@@ -1,0 +1,189 @@
+HTTP in Detail 
+
+**************************************************************************************************************************
+
+Task 1: What is HTTP(S) ? 
+
+[*] HTTP is HyperText Transfer Protocol 
+
+[*] HTTPS is HyperText Transfer Protocol Secure 
+
+    [+] HTTP is what's used whenever you view a website, developed by Tim Berners-Lee and his team between 1989-1991.
+
+    [+] HTTPS is the secure version of HTTP. HTTPS data is encrypted so it not only stops people from seeing the data you are receiving and sending, but it also gives you assurances that you're talking to the correct web server and not something impersonating it.
+
+[Question 1]: What does HTTP stand for? 
+
+    [!] Answer: HyperText Transfer Protocol
+
+[Question 2]: What does the S in HTTPS stand for?
+
+    [!] Answer: Secure 
+
+[Question 3]: On the mock webpage on the right there is an issue, once you've found it, click on it. What is the challenge flag?
+
+    [+] You must click to the mock and see the flag 
+
+    [!] Answer: THM{INVALID_HTTP_CERT}
+
+**************************************************************************************************************************
+
+Task 2: Requests And Responses 
+
+[*] When we access a website, your browser will need to make requests to a web server for assets such as HTML, Images, and download the responses.
+
+[*] URL is Uniform Resource Locator
+
+    [+] A URL is predominantly an instruction on how to access a resource on the internet.  
+
+    [+] In this task, we will learn about request and response in HTTP and HTTPS 
+
+    [+] We need to have knowledge about HTTP header and we can read here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+
+[Question 1]: What HTTP protocol is being used in the above example?
+
+    [!] Answer: HTTP/1.1
+
+[Question 2]: What response header tells the browser how much data to expect?
+
+    [!] Content-Length 
+
+**************************************************************************************************************************
+
+Task 3: HTTP methods 
+
+[*] HTTP methods are a way for the client to show their intended action when making an HTTP request.
+
+    [+] GET: This is used for getting information from a web server.
+
+    [+] POST: This is used for submitting data to the web server and potentially creating new records
+
+    [+] PUT: This is used for submitting data to a web server to update information
+
+    [+] DELETE: This is used for deleting information/records from a web server.
+
+[Question 1]: What method would be used to create a new user account?
+
+    [!] Answer: POST 
+
+[Question 2]: What method would be used to update your email address?
+
+    [!] Answer: PUT 
+
+[Question 3]: What method would be used to remove a picture you've uploaded to your account?    
+
+    [!] Answer: DELETE
+
+[Question 4]: What method would be used to view a news article?
+
+    [!] Answer: GET 
+
+**************************************************************************************************************************
+
+Task 4: HTTP Status Codes 
+
+[*] In the previous task, you learnt that when a HTTP server responds, the first line always contains a status code informing the client of the outcome of their request and also potentially how to handle it. 
+
+    [+] 100-199 - Information Response
+
+    [+] 200-299 - Success	
+
+    [+] 300-399 - Redirection
+
+    [+] 400-499 - Client Errors
+
+    [+] 500-599 - Server Errors
+
+[*] There are a lot of different HTTP status codes and that's not including the fact that applications can even define their own, we'll go over the most common HTTP responses you are likely to come across:
+
+    [+] 200 - OK 
+
+    [+] 201 - created 
+
+    [+] ........
+
+[Question 1]: What response code might you receive if you've created a new user or blog post article?
+
+    [!] Answer: 201
+
+[Question 2]: What response code might you receive if you've tried to access a page that doesn't exist?
+
+    [!] Answer: 404
+
+[Question 3]: What response code might you receive if the web server cannot access its database and the application crashes?
+
+    [!] Answer: 503
+
+[Question 4]: What response code might you receive if you try to edit your profile without logging in first?
+
+    [!] Answer: 401 
+
+**************************************************************************************************************************
+
+Task 5: Header 
+
+[*] Headers are additional bits of data you can send to the web server when making requests.
+
+    [+] https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+
+[Question 1]: What header tells the web server what browser is being used?
+
+    [!] Answer: User-Agent 
+
+[Question 2]: What header tells the browser what type of data is being returned?
+
+    [!] Answer: Content-Type
+
+[Question 3]: What header tells the web server which website is being requested?
+
+    [!] Answer: Host 
+
+**************************************************************************************************************************
+
+Task 6: Cookies
+
+[*] Cookies are saved when you receive a "Set-Cookie" header from a web server.
+
+    [+] Cookies can be used for many purposes but are most commonly used for website authentication. 
+
+    [+] You can easily view what cookies your browser is sending to a website by using the developer tools, in your browser. 
+
+[Question 1]: Which header is used to save cookies to your computer?
+
+    [!] Answer: Set-Cookie
+
+**************************************************************************************************************************
+
+Task 7: Making Requests
+
+[*] Deploy the VM 
+
+[Question 1]: Make a GET request to /room
+
+    [+] Choose method GET and in URL we type /room 
+
+    [!] Answer: THM{YOU'RE_IN_THE_ROOM}
+
+[Question 2]: Make a GET request to /blog and using the gear icon set the id parameter to 1 in the URL field
+
+    [!] Answer: THM{YOU_FOUND_THE_BLOG}
+
+[Question 3]: Make a DELETE request to /user/1
+
+    [+] Choose DELETE method 
+
+    [!] Answer: THM{USER_IS_DELETED}
+
+[Question 4]: Make a PUT request to /user/2 with the username parameter set to admin
+
+    [!] Answer: THM{USER_HAS_UPDATED}
+
+[Question 5]: POST the username of thm and a password of letmein to /login
+
+    [!] Answer: THM{HTTP_REQUEST_MASTER}
+
+
+
+
+
+
